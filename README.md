@@ -1,8 +1,46 @@
 # Introduction
 This is fairseq, a sequence-to-sequence learning toolkit for [Torch](http://torch.ch/) from Facebook AI Research tailored to Neural Machine Translation (NMT).
-It implements the convolutional NMT models models proposed in [Convolutional Sequence to Sequence Learning](https://fb.me/convolutional-s2s.pdf) and [A Convolutional Encoder Model for Neural Machine Translation](https://arxiv.org/abs/1611.02344) as well as a standard LSTM-based model.
+It implements the convolutional NMT models proposed in [Convolutional Sequence to Sequence Learning](https://arxiv.org/abs/1705.03122) and [A Convolutional Encoder Model for Neural Machine Translation](https://arxiv.org/abs/1611.02344) as well as a standard LSTM-based model.
 It features multi-GPU training on a single machine as well as fast beam search generation on both CPU and GPU.
 We provide pre-trained models for English to French, English to German and English to Romanian translation.
+
+![Model](https://scontent-sea1-1.xx.fbcdn.net/v/t39.2365-6/18158912_821511514668337_8758096610476425216_n.gif?_nc_log=1&oh=c153aeed8f74e8c66a81069518e3b059&oe=59ADFE25)
+
+# Citation
+
+If you use the code in your paper, then please cite it as:
+
+```
+@article{gehring2017convs2s,
+  author          = {Gehring, Jonas, and Auli, Michael and Grangier, David and Yarats, Denis and Dauphin, Yann N},
+  title           = "{Convolutional Sequence to Sequence Learning}",
+  journal         = {ArXiv e-prints},
+  archivePrefix   = "arXiv",
+  eprinttype      = {arxiv},
+  eprint          = {1705.03122},
+  primaryClass    = "cs.CL",
+  keywords        = {Computer Science - Computation and Language},
+  year            = 2017,
+  month           = May,
+}
+```
+
+and
+
+```
+@article{gehring2016convenc,
+  author          = {Gehring, Jonas, and Auli, Michael and Grangier, David and Dauphin, Yann N},
+  title           = "{A Convolutional Encoder Model for Neural Machine Translation}",
+  journal         = {ArXiv e-prints},
+  archivePrefix   = "arXiv",
+  eprinttype      = {arxiv},
+  eprint          = {1611.02344},
+  primaryClass    = "cs.CL",
+  keywords        = {Computer Science - Computation and Language},
+  year            = 2016,
+  month           = Nov,
+}
+```
 
 # Requirements and Installation
 * A computer running macOS or Linux
@@ -84,7 +122,7 @@ $ fairseq preprocess -sourcelang de -targetlang en \
 This will write binarized data that can be used for model training to data-bin/iwslt14.tokenized.de-en.
 
 ### Training
-Use `fairseq train` to tran a new model.
+Use `fairseq train` to train a new model.
 Here a few example settings that work well for the IWSLT14 dataset:
 ```
 # Standard bi-directional LSTM model
@@ -187,6 +225,12 @@ $ grep ^T /tmp/gen.out | cut -f2- | sed 's/@@ //g' > /tmp/gen.out.ref
 $ fairseq score -sys /tmp/gen.out.sys -ref /tmp/gen.out.ref
 BLEU4 = 40.55, 67.6/46.5/34.0/25.3 (BP=1.000, ratio=0.998, sys_len=81369, ref_len=81194)
 ```
+
+# Join the fairseq community
+
+* Facebook page: https://www.facebook.com/groups/fairseq.users
+* Google group: https://groups.google.com/forum/#!forum/fairseq-users
+* Contact: [jgehring@fb.com](mailto:jgehring@fb.com), [michaelauli@fb.com](mailto:michaelauli@fb.com)
 
 # License
 fairseq is BSD-licensed.
